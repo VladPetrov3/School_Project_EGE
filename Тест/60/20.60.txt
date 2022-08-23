@@ -1,0 +1,49 @@
+#include<iostream>
+#include<vector>
+#include<climits>
+#include<algorithm>
+#include<cmath>
+
+//+ 1; *4;
+using namespace std;
+vector<vector<int>> v(1000, vector <int>(1000, INT_MIN));
+	
+int game(int x, int y) {
+	if (v[x][y] != INT_MIN) {
+		return v[x][y]; 
+	}
+	if (x + y >= 125) {   
+		return 0;
+	}
+	vector<int>neg, tmp = { game(x + 1,y), game(x, y + 1), game(x * 4,y), game(x,y * 4) };
+	for (auto x: tmp) { 
+		if (x <= 0) {
+			neg.push_back(x);
+		}
+	}
+	int res; 
+	if (!neg.empty()) {
+		res = -*max_element(neg.begin(), neg.end()) + 1;
+	}
+	else {
+		res = -*max_element(tmp.begin(), tmp.end());
+	}
+	return v[x][y] = res;
+}
+
+int main() {
+	for (int i = 1; i < 200; i++) {
+		if (game(i, 7) == 2) {
+			cout << i << endl; 
+		}
+
+	}
+	cout << endl;
+	for (int i = 1; i < 200; i++) {
+		if (game(i, 7) == -2) {
+			cout << i << endl; 
+		}
+
+	}
+
+}	

@@ -1,0 +1,65 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <vector>
+#include <climits>
+
+using namespace std;
+
+vector<vector<int>> m(500, vector<int>(500, INT_MIN));
+int game(int x, int y) {
+	if (m[x][y] != INT_MIN) {
+		return m[x][y];
+	}
+	if (x + y <= 18) {
+		return m[x][y] = 0;
+	}
+	vector<int> tmp, neg;
+	if (x - 1 > 0) {
+		tmp.push_back(game(x - 1, y));
+	}
+	if (y - 1 > 0) {
+		tmp.push_back(game(x, y - 1));
+	}
+
+	if (x > 1) {
+		if (x % 2 == 0) {
+			tmp.push_back(game(x / 2, y));
+		} else {
+			tmp.push_back(game((x - 1) / 2, y));
+		}
+	}
+
+	if (y > 1) {
+		if (y % 2 == 0) {
+			tmp.push_back(game(x, y / 2));
+		}
+		else {
+			tmp.push_back(game(x, (y - 1) / 2));
+		}
+	}
+
+	for (int x : tmp) {
+		if (x <= 0) {
+			neg.push_back(x);
+		}
+	}
+
+	if (!neg.empty()) {
+		return m[x][y] = -*max_element(neg.begin(), neg.end()) + 1;
+	} else {
+		return m[x][y] = -*max_element(tmp.begin(), tmp.end());
+	}
+}
+
+int main() {
+	for (int i = 1; i <= 40; i++) {
+		if (i + i >= 19) {
+			int r = game(i, i); // Кстати, тут можно делать и так. 
+			//cout << i << ' ' << r << endl;
+			if (r == -1) {
+				cout << i << ' ' << r << endl;
+			}
+		}
+	}
+}

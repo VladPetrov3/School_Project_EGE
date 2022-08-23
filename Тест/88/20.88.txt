@@ -1,0 +1,49 @@
+#include <iostream>
+#include<algorithm>
+#include <vector>
+#include<climits>
+
+using namespace std;
+
+vector<vector<int>> v(200, vector<int>(200, INT_MIN));
+
+int game(int x, int y) {
+	if (v[x][y] != INT_MIN) {
+		return v[x][y];
+	}
+	if (x + y >= 13) { // да, вы верно подметиле, что в задаче сказано "когда в сумме в кучах будет 13 камней", то есть = 13. Но при такомs раскладе программа нам выдаст ошибку. Задача сформулированна неверно, не обращяем на это внимание.
+		return 0;
+	}
+	vector<int> neg, tmp = { game(x + 1,y),game(x,y + 1),game(x + 2,y),game(x,y + 2) };
+	for (auto x : tmp) {
+		if (x <= 0) {
+			neg.push_back(x);
+		}
+	}
+	
+	int res;
+	if (!neg.empty()) {
+		res = -*max_element(neg.begin(), neg.end()) + 1;
+	}
+	else {
+		res = -*max_element(tmp.begin(), tmp.end());
+	}
+	return v[x][y] = res;
+}
+
+
+
+
+int main() {
+	for (int i = 1; i <= 9; i++) {
+		if (game(3,i) == 2) {
+			cout << i << endl;
+		}
+	}
+cout << endl;
+	for (int i = 1; i <= 9; i++) {
+		if (game(3,i) == -2) {
+			cout << i << endl;
+		}
+	}
+}

@@ -1,0 +1,65 @@
+#include <iostream>
+#include<algorithm>
+#include <vector>
+#include<climits>
+
+using namespace std;
+
+vector<vector<int>>v(1000, vector<int>(1000, INT_MIN));
+
+int game(int x, int y) {
+	if (v[x][y] != INT_MIN) {
+		return v[x][y];
+	}
+	if (x + y <= 20) {
+		return 0;
+	}
+	vector<int> neg, tmp;
+	if (x - 1 > 0) {
+		tmp.push_back(game(x - 1, y));
+	}
+	if (y - 1 > 0) {
+		tmp.push_back(game(x, y - 1));
+	}
+	if (x > 1) {
+		if (x % 2 != 0) {
+			tmp.push_back(game((x - 1) / 2, y));
+		}
+		else {
+			tmp.push_back(game(x / 2, y));
+		}
+	}
+	if (y > 1) {
+		if (y % 2 != 0) {
+			tmp.push_back(game(x, (y-1)/2));
+		}
+		else {
+			tmp.push_back(game(x, y/2));
+		}
+	}
+	for (auto x : tmp) {
+		if (x <= 0) {
+			neg.push_back(x);
+		}
+	}
+	int res;
+	if (!neg.empty()) {
+		res = -*max_element(neg.begin(), neg.end()) + 1;
+	}
+	else {
+		res = -*max_element(tmp.begin(), tmp.end());
+	}
+	return v[x][y] = res;
+}
+
+
+
+
+
+int main() {
+	for (int i = 10; i < 100; i++) {
+		if (game(i, 10) == -2) {
+			cout << i; 
+		}
+	}
+}

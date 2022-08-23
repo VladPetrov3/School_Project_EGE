@@ -1,0 +1,41 @@
+//game(x+y,y)
+#include <iostream>
+#include<algorithm>
+#include<vector>
+#include<climits>
+using namespace std;
+//vector<vector<int>> v(200, vector <int>(200,INT_MIN));
+vector<int>v(2000,INT_MIN);
+int game(int x){
+    if(v[x] != INT_MIN){
+        return v[x];
+    }
+    if(x >= 1000){
+        return 0;
+    }
+    vector<int>neg,tmp={game(x+100),game(x*2)};
+    for(auto x: tmp){
+        if(x<=0){
+            neg.push_back(x);
+        }
+    }
+    int res;
+    if(!neg.empty()){
+        res = -*max_element(neg.begin(),neg.end())+1;
+    } else {
+        res = -*max_element(tmp.begin(),tmp.end());
+    }
+    return v[x] = res;
+}
+
+int main()
+{
+    int c =0;
+    for(int i = 1; i < 1000; i++){
+        if (game(i) == -1){
+        //cout << "(" << i <<") " << game(i)<<endl;
+        c++;
+        }
+    }
+    cout<< c;
+}
