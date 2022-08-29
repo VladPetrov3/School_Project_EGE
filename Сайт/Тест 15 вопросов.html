@@ -75,7 +75,7 @@ button{
 </head>
 <body style="background-color:white;">
 <div style="margin-left: auto;margin-right: auto;width: 960px;">
-<p>Тест. Тема - "<span id="tema"></span>".</p>
+<p>Тест. Тема - 19-21 ЕГЭ Информатика</p>
 <div class="row">
     <div class="col s12">
         <ul class="tabs z-depth-1 hoverable">
@@ -466,49 +466,49 @@ function sled_vopr(event){
 function proverit(){
 otv_uch_1 = document.getElementById('z_1').value;
 otv_ucgenika_1 = otv_uch_1;
-otv_uch_1 = kodirov(otv_uch_1);
+
 otv_uch_2 = document.getElementById('z_2').value;
 otv_ucgenika_2 = otv_uch_2;
-otv_uch_2 = kodirov(otv_uch_2);
+
 otv_uch_3 = document.getElementById('z_3').value;
 otv_ucgenika_3 = otv_uch_3;
-otv_uch_3 = kodirov(otv_uch_3);
+
 otv_uch_4 = document.getElementById('z_4').value;
 otv_ucgenika_4 = otv_uch_4;
-otv_uch_4 = kodirov(otv_uch_4);
+
 otv_uch_5 = document.getElementById('z_5').value;
 otv_ucgenika_5 = otv_uch_5;
-otv_uch_5 = kodirov(otv_uch_5);
+
 otv_uch_6 = document.getElementById('z_6').value;
 otv_ucgenika_6 = otv_uch_6;
-otv_uch_6 = kodirov(otv_uch_6);
+
 otv_uch_7 = document.getElementById('z_7').value;
 otv_ucgenika_7 = otv_uch_7;
-otv_uch_7 = kodirov(otv_uch_7);
+
 otv_uch_8 = document.getElementById('z_8').value;
 otv_ucgenika_8 = otv_uch_8;
-otv_uch_8 = kodirov(otv_uch_8);
+
 otv_uch_9 = document.getElementById('z_9').value;
 otv_ucgenika_9 = otv_uch_9;
-otv_uch_9 = kodirov(otv_uch_9);
+
 otv_uch_10 = document.getElementById('z_10').value;
 otv_ucgenika_10 = otv_uch_10;
-otv_uch_10 = kodirov(otv_uch_10);
+
 otv_uch_11 = document.getElementById('z_11').value;
 otv_ucgenika_11 = otv_uch_11;
-otv_uch_11 = kodirov(otv_uch_11);
+
 otv_uch_12 = document.getElementById('z_12').value;
 otv_ucgenika_12 = otv_uch_12;
-otv_uch_12 = kodirov(otv_uch_12);
+
 otv_uch_13 = document.getElementById('z_13').value;
 otv_ucgenika_13 = otv_uch_13;
-otv_uch_13 = kodirov(otv_uch_13);
+
 otv_uch_14 = document.getElementById('z_14').value;
 otv_ucgenika_14 = otv_uch_14;
-otv_uch_14 = kodirov(otv_uch_14);
+
 otv_uch_15 = document.getElementById('z_15').value;
 otv_ucgenika_15 = otv_uch_15;
-otv_uch_15 = kodirov(otv_uch_15);
+;
 ball = 0;
 
 document.getElementById('kn_pr').style.display = "none";
@@ -607,25 +607,7 @@ procent_vip = ball/vsego_zadach * 100;
 procent_vip = procent_vip.toFixed();
 document.getElementById('rezultat').innerHTML = "<span id='ot'>Задания выполнены верно на "+procent_vip+"%.</span><br><br>"+otveti;
 }
-function kodirov(stroka) { 
-    var b64ch = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefg'+ 
-                   'hijklmnopqrstuvwxyz0123456789+/='; 
-    var b64enc = ''; 
-    var ch1, ch2, ch3; 
-    var en1, en2, en3, en4; 
-    for (var i=0; i<stroka.length;) { 
-        ch1 = stroka.charCodeAt(i++); 
-        ch2 = stroka.charCodeAt(i++); 
-        ch3 = stroka.charCodeAt(i++); 
-        en1 = ch1 >> 2; 
-        en2 = ((ch1 & 3) << 4) | (ch2 >> 4); 
-        en3 = isNaN(ch2) ? 64:(((ch2 & 15) << 2) | (ch3 >> 6)); 
-        en4 = isNaN(ch3) ? 64:(ch3 & 63); 
-        b64enc += b64ch.charAt(en1) + b64ch.charAt(en2) + 
-                      b64ch.charAt(en3) + b64ch.charAt(en4); 
-    } 
-    return b64enc; 
-} 
+
 </script>
 
 </body>
