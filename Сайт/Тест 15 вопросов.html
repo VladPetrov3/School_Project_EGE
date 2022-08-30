@@ -3,6 +3,8 @@
 <head><title>ТЕСТ</title>
 <meta charset="utf-8">
 <script type="text/javascript" src="data/data.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+      <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
@@ -27,10 +29,6 @@ document.addEventListener("DOMContentLoaded",function(){
 
 </script>
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <style>
-      .aligncenter {
-      text-align: center;
-      }
 </style> <link rel="icon" href="icon.png" type="image/x-icon">
     </head>
   <body style="background-color: white;">
@@ -70,8 +68,8 @@ button{
 #ot {
     color:blue;
 }
-
 </style>
+
 </head>
 <body style="background-color:white;">
 <div style="margin-left: auto;margin-right: auto;width: 960px;">
@@ -607,8 +605,10 @@ procent_vip = ball/vsego_zadach * 100;
 procent_vip = procent_vip.toFixed();
 document.getElementById('rezultat').innerHTML = "<span id='ot'>Задания выполнены верно на "+procent_vip+"%.</span><br><br>"+otveti;
 }
-
+$(document).ready(function () {
+          $('.sidenav').sidenav();
+})
 </script>
-
+      
 </body>
 </html> 
